@@ -42,9 +42,11 @@ def delete_branch(gh_pages_branche_name):
     except:
         git_checkout(["git", "checkout", '-b', gh_pages_branche_name])
     git_checkout(['git', 'add', '.'], False)
-    git_checkout(['git', 'commit', '-m', "Commit avant mise en ligne site"], False)
+    git_checkout(['git', 'commit', '-m', "Commit préalable suppression"], False)
     git_checkout(['git', 'push', 'origin', gh_pages_branche_name, '--force'])
     git_checkout(["git", "rm", "-r", "*"], False)
+    git_checkout(['git', 'add', '.'], False)
+    git_checkout(['git', 'commit', '-m', "Commit de suppression"], False)
     git_checkout(["git", "push", "origin", gh_pages_branche_name, '--force'])
     git_checkout(["git", "checkout", "main"])
     git_checkout(["git", "branch", "-D", gh_pages_branche_name])
