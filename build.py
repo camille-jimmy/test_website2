@@ -62,19 +62,28 @@ def add_jv_control(folder_path):
             file_path = os.path.join(r, file)
             if (file_path.endswith('.html')) & (re.search(r"\\_static\\|\\_sources\\|\\_sphinx_design_static\\", file_path) is None):
                 print(file_path)
-                # Lire le fichier HTML
-                print(file_path)
+                folders = r.split('\\')
+                ifold=0
+                while folders[ifold] != "html":
+                    ifold+=1
+                depth = len(folders)-ifold
+                depth_string = ""
+                for p in range(depth):
+                    depth_string +="../"                                      
                 with open(file_path, 'r') as f:
                     contents = f.read()
                     soup = BeautifulSoup(contents, 'html.parser')
                     tag = soup.new_tag("script")
                     tag.append("""
-                            if (!localStorage.getItem('mdp')) {
-                                window.location.href = "../index.html";
-                            }
+fetch('"""+depth_string+"""mdp.txt')
+.then(response => response.text())
+.then(mdp => {
+    if ((!sessionStorage.getItem('mdp')) || (sessionStorage.getItem('mdp') != mdp))  {
+        window.location.href = "../index.html"
+    }
+})
                         """)
-                    head = soup.find('body')
-                    head.insert_after(tag)
+                    soup.body.append(tag)
                 # Écrire le HTML modifié dans le fichier
                 with open(file_path, 'w') as f:
                     f.write(str(soup))
