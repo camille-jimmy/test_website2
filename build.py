@@ -23,14 +23,14 @@ def main_build_doc():
 def git_checkout(command, block=True):
     try:
         output = subprocess.check_output(command, stderr=subprocess.STDOUT)
-        print("Commande"+ ' '.join(command) +"exécutée avec succès :\n", output.decode())
+        print("Commande "+ ' '.join(command) +" exécutée avec succès :\n", output.decode())
         
     except subprocess.CalledProcessError as e:
-        print("Une erreur est survenue pendant l'exécution de la commande:"+ ' '.join(command))
+        print("Une erreur est survenue pendant l'exécution de la commande: "+ ' '.join(command))
         if block:
-            raise ValueError("Message d'erreur :", e.output.decode())
+            raise ValueError("Message d'erreur : ", e.output.decode())
         else:
-            print("Message d'erreur :", e.output.decode())
+            print("Message d'erreur : ", e.output.decode())
 
 
 def delete_branch(gh_pages_branche_name):
