@@ -199,9 +199,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <!-- Scripts loaded after <body> so the DOM is not blocked -->
 <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-</body><script>
-                            if (!localStorage.getItem('mdp')) {
-                                window.location.href = "../index.html";
-                            }
-                        </script>
+<script>
+fetch('../mdp.txt')
+.then(response => response.text())
+.then(mdp => {
+    if ((!sessionStorage.getItem('mdp')) || (sessionStorage.getItem('mdp') != mdp))  {
+        window.location.href = "../index.html"
+    }
+})
+                        </script></body>
 </html>
