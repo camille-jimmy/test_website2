@@ -80,11 +80,11 @@ def add_jv_control(folder_path):
 fetch('"""+depth_string+"""mdp.txt')
 .then(response => response.text())
 .then(mdp => {
+    window.alert(mdp)
+    window.alert(sessionStorage.getItem('mdp'))
+    window.alert(sessionStorage.getItem('mdp') != mdp)
+    window.alert(!sessionStorage.getItem('mdp'))
     if ((!sessionStorage.getItem('mdp')) || (sessionStorage.getItem('mdp') != mdp))  {
-        window.alert(mdp)
-        window.alert(sessionStorage.getItem('mdp'))
-        window.alert(sessionStorage.getItem('mdp') != mdp)
-        window.alert(!sessionStorage.getItem('mdp'))
         window.location.href = """+depth_string+""""index.html"
     }
 })
