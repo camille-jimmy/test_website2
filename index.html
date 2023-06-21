@@ -114,7 +114,7 @@
                         var alert = document.querySelectorAll('[data-id="alert"]');
                         if (secret == mdp) {
                             window.location.href = "site/index.html"
-                            localStorage.setItem('mdp', mdp)
+                            sessionStorage.setItem('mdp', mdp)
                         } else {
                             alert[0].style.display = 'block'
                             password[0].setAttribute('placeholder', 'Incorrect password')
