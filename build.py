@@ -23,10 +23,10 @@ def main_build_doc():
 def git_checkout(command, block=True):
     try:
         output = subprocess.check_output(command, stderr=subprocess.STDOUT)
-        print("Commande exécutée avec succès :\n", output.decode())
+        print("Commande"+ ' '.join(command) +"exécutée avec succès :\n", output.decode())
         
     except subprocess.CalledProcessError as e:
-        print("Une erreur est survenue pendant l'exécution de la commande git checkout :")
+        print("Une erreur est survenue pendant l'exécution de la commande:"+ ' '.join(command))
         if block:
             raise ValueError("Message d'erreur :", e.output.decode())
         else:
@@ -81,7 +81,10 @@ fetch('"""+depth_string+"""mdp.txt')
 .then(response => response.text())
 .then(mdp => {
     if ((!sessionStorage.getItem('mdp')) || (sessionStorage.getItem('mdp') != mdp))  {
-        window.location.href = "../index.html"
+        window.alert('"""+depth_string+"""mdp.txt')
+        window.alert(mdp)
+        window.alert(sessionStorage.getItem('mdp'))
+        window.alert(!sessionStorage.getItem('mdp'))
     }
 })
                         """)
