@@ -81,10 +81,7 @@ fetch('"""+depth_string+"""mdp.txt')
 .then(response => response.text())
 .then(mdp => {
     if ((!sessionStorage.getItem('mdp')) || (sessionStorage.getItem('mdp') != mdp))  {
-        window.alert('"""+depth_string+"""mdp.txt')
-        window.alert(mdp)
-        window.alert(sessionStorage.getItem('mdp'))
-        window.alert(!sessionStorage.getItem('mdp'))
+        window.location.href = """+depth_string+""""index.html"
     }
 })
                         """)
